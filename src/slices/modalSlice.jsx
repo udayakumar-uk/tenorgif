@@ -29,6 +29,7 @@ export const modalSlice = createSlice({
             state.item = item;
             state.type = 'gif';
             state.dims = item.media[0].gif.dims;
+            state.url = item.media[0].gif.url;
             state.size = convertToFileSize(item.media[0].gif.size);
 
             console.log(item);
@@ -39,18 +40,22 @@ export const modalSlice = createSlice({
             state.transparent = false; 
             state.transparentType = ''
         },
-        setGifType(state, action, checked){
+        setGifType(state, action){
             const type = action.payload;
+            
             if(type === '_transparent'){
-                state.type = '';
-                state.transparentType = true;
+                // state.type = '';
+                // state.transparentType = state.type+type;
+                // state.dims = state.item.media[0][type].dims;
+                // state.size = convertToFileSize(state.item.media[0][type].size);
             }else{
                 state.type = type;
                 state.transparentType = '';
                 state.transparent = (type === 'webp' || type === 'tinygif' || type === 'nanogif');
+                state.dims = state.item.media[0][type].dims;
+                state.url = state.item.media[0][type].url;
+                state.size = convertToFileSize(state.item.media[0][type].size);
             }
-            state.dims = state.item.media[0][type].dims;
-            state.size = convertToFileSize(state.item.media[0][type].size);
         }
     }
 });

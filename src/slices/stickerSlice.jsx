@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const stickerSlice = createSlice({
     name: 'category',
     initialState: {
-        stickers: [],
+        gifData: [],
         loading: false,
         err: null
     },
@@ -14,7 +14,12 @@ export const stickerSlice = createSlice({
         },
         setStickerData(state, action){
             state.loading = false;
-            state.stickers = action.payload
+            state.gifData = action.payload
+        },
+        setStickFavoData(state, action){
+            state.gifData = action.payload;
+            console.log(action.payload);
+            
         },
         errStickerData(state, action){
             state.loading = false;
@@ -24,7 +29,7 @@ export const stickerSlice = createSlice({
 });
 
 
-export const {startStickLoading, setStickerData, errStickerData} = stickerSlice.actions
+export const {startStickLoading, setStickerData, errStickerData, setStickFavoData} = stickerSlice.actions
 
 export default stickerSlice.reducer;
 

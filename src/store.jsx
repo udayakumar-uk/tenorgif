@@ -4,13 +4,15 @@ import filterReducer from './slices/filterSlice';
 import stickerReducer from './slices/stickerSlice';
 import featuredReducer from './slices/featuredSlice';
 import modalReducer from './slices/modalSlice';
+import favoriteReducer from './slices/favoriteSlice';
 
 export const store = configureStore({
     reducer:{
         category: categoryReducer,
         filter: filterReducer,
-        sticker: stickerReducer,
+        modal: modalReducer,
         featured: featuredReducer,
-        modal: modalReducer
+        sticker: stickerReducer,
+        favorite: favoriteReducer
     }
 })

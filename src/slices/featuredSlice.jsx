@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const featuerdSlice = createSlice({
     name: 'category',
     initialState: {
-        features: [],
+        gifData: [],
         loading: false,
         err: null
     },
@@ -14,7 +14,11 @@ export const featuerdSlice = createSlice({
         },
         setFeatuerdData(state, action){
             state.loading = false;
-            state.features = action.payload
+            state.gifData = action.payload
+        },
+        setFeaFavoData(state, action){
+            state.gifData = action.payload;
+            console.log(action.payload);
         },
         errFeatuerData(state, action){
             state.loading = false;
@@ -24,7 +28,7 @@ export const featuerdSlice = createSlice({
 });
 
 
-export const {startFeatuerdLoading, setFeatuerdData, errFeatuerData} = featuerdSlice.actions
+export const {startFeatuerdLoading, setFeatuerdData, setFeaFavoData, errFeatuerData} = featuerdSlice.actions
 
 export default featuerdSlice.reducer;
 

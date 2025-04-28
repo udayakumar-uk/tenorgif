@@ -18,12 +18,13 @@ export default function Modal(){
         createBlob();
     }, [type, transparentType]);
 
-    const createBlob = async function(){
+    async function createBlob(){
         if(item){
-            const blobImgUrl = await fetch(item?.media[0][type + transparentType].url).then(response => response.blob()).then(blob => {
-                                const blobUrl = URL.createObjectURL(blob);
-                                return blobUrl;
-                            }).catch(error => console.error('Error:', error));
+            const blobImgUrl = await fetch(item.media[0][type + transparentType].url).then(response => response.blob())
+                                .then(blob => {
+                                    const blobUrl = URL.createObjectURL(blob);
+                                    return blobUrl;
+                                }).catch(error => console.error('Error:', error));
             
             setBlogUrl(blobImgUrl);
         }
@@ -86,18 +87,19 @@ export default function Modal(){
                             <label className="btn btn-sm btn-light" onClick={() => dispatch(setGifType('nanomp4'))} htmlFor="nanomp4">Nanomp4</label>
                         </div>
 
-                        { sticker &&  <>
+                        {/* { sticker &&  
+                            <>
                                 <br />
                                 <strong className="sub-title">Transparent (Tiny, Nano, Webp)</strong>
                                 <div className="btn-group">
-                                    <input type="checkbox" disabled={!transparent} className="btn-check" onClick={(e) => {
-                                        const checked = e.target.checked
-                                        dispatch(setGifType('_transparent', checked))
-                                    }}  name="transparent" id="transparent" defaultValue="_transparent"  />
-                                    <label className="btn btn-sm btn-light" htmlFor="transparent">{transparentType ? 'Yes': 'No'}</label>
+                                    <input type="checkbox" disabled={!transparent} className="btn-check" onChange={(e) => {
+                                        const checked = e.target.checked;
+                                        dispatch(setGifType('_transparent'))
+                                    }} name="transparent" id="transparent" value="_transparent" />
+                                    <label className="btn btn-sm btn-light" htmlFor="transparent">{transparent ? 'Yes': 'No'}</label>
                                 </div>
                             </>
-                            }
+                        } */}
                         
                         <br />
 

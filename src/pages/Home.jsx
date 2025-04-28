@@ -3,9 +3,8 @@ import { useSelector } from 'react-redux';
 
 import Header from '../components/Header';
 import Aside from '../components/Aside';
-import Sticker from '../components/Sticker';
-import Featured from '../components/Featured';
 import Modal from '../components/Modal';
+import { Outlet } from 'react-router-dom';
 
 
 
@@ -34,8 +33,7 @@ export default function Home(){
                 
                 <main>
                     <Modal />
-                    <Sticker />
-                    <Featured />
+                    <Outlet />
                     {/* <Main loadMore={loadMore} filter={filter} sticker={stickers} featured={featured} itemClicks={itemClicks} favTrigger={FavoriteClick} seeAllClick={seeAllClick} /> */}
                     {/* <Modal modalItem={modal.item} open={modal.showModal} type={modal.type} modal={{ ...modal }} modalTrigger={{closeModal, closeBackdropModal, gifType, convertToFileSize}} />
 

@@ -26,7 +26,7 @@ export function AsyncThunkSticker(search, limit, key){
         try{
             const response = await fetch('https://g.tenor.com/v1/search?&searchfilter=sticker&q='+search+'&limit='+limit+'&key='+key);
             const res = await response.json();
-            const stickerData = res.results.map(stick => ({ ...stick, sticker: true}));
+            const stickerData = res.results.map(stick => ({ ...stick, sticker: true, favorite: false}));
             console.log('sticker', stickerData);
             dispatch(setStickerData(stickerData));
             
@@ -44,9 +44,10 @@ export function AsyncThunkFeature(search, limit, key){
         try{
             const response = await fetch('https://g.tenor.com/v1/search?key='+key+'&q='+search+'&limit='+limit);
             const res = await response.json();
-            console.log('featured', res);
+            const featureData = res.results.map(fea => ({ ...fea, favorite: false}));
+            console.log('featured', featureData);
             
-            dispatch(setFeatuerdData(res.results));
+            dispatch(setFeatuerdData(featureData));
             
         }catch(err){
             console.log(err);
