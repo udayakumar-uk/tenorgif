@@ -25,7 +25,7 @@ export default function Aside(){
                 <h2>Categories</h2>
                 <nav>
                     <ul className="scrollbar">
-                        {categories.map(tag => <li key={tag.searchterm}><Link to="/" onClick={()=> {dispatch(setSidebarEvent(tag.searchterm))}} className={tag.searchterm === search ? 'active' : ''}>{tag.searchterm}</Link></li>)}
+                        {categories.map(tag => <li key={tag.searchterm}><Link style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}} to="/" onClick={()=> {dispatch(setSidebarEvent(tag.searchterm))}} className={tag.searchterm === search ? 'active' : ''}><span className="category-name">{tag.searchterm}</span> <img className="category-img" style={{width: '28px', borderRadius: '5px', height: '28px',}} src={tag.image} alt={tag.name} /></Link></li>)}
                     </ul>
                 </nav>
             </section>

@@ -14,7 +14,15 @@ export const stickerSlice = createSlice({
         },
         setStickerData(state, action){
             state.loading = false;
-            state.gifData = action.payload
+            const getFavData = JSON.parse(localStorage.getItem('favorites'));
+            if(getFavData.length){
+                action.payload.forEach(gif => {
+                    if(getFavData.some(fav => fav.id === gif.id)) {
+                        gif.favorite = true;
+                    }
+                });
+            }
+            state.gifData = action.payload;
         },
         setStickFavoData(state, action){
             state.gifData = action.payload;

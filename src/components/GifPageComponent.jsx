@@ -22,9 +22,6 @@ export default function GifPageComponent({gifProp}){
         switch(gifProp){
             case 'featured': dispatch(AsyncThunkFeature(search, limit, key));
             case 'sticker': dispatch(AsyncThunkSticker(search, limit, key));
-            case 'favorite': {
-                console.log(gifProp);
-            };
         }
     }, [dispatch, search, limit]);
 
@@ -45,7 +42,7 @@ export default function GifPageComponent({gifProp}){
             <ul className="flex-section">
                 { 
                     gifData.map(sticker => 
-                    <Suspense key={sticker.id} fallback={<p>Loading...</p>}> 
+                    <Suspense key={sticker.id} fallback={<img src={Loading} alt="Loading" />}> 
                         <GifCard key={sticker.id} feature={sticker} /> 
                     </Suspense>
                     )
@@ -61,7 +58,7 @@ export default function GifPageComponent({gifProp}){
                 :
 
                 <div className="pagination">
-                    <p>Showing 1 to {gifData.length} of 50 results</p>
+                    {gifProp === 'favorite' ? <p>Showing {gifData.length} results</p> : <p>Showing 1 to {gifData.length} of 50 results</p>}
                     {gifProp !== 'favorite' && limit !== 50 && pagination && <button className="loadmore btn btn-primary btn-lg" onClick={() => loadMore(10) }>Load More</button>}
                 </div>
             }

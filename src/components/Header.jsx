@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from "react";
 import Logo from "../img/tenor_logo.svg.png";
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { setSearchVal, reset } from "../slices/filterSlice";
 import { setFavorite } from "../slices/favoriteSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,7 @@ export default function Header({openSidebar}){
     const [darkMode, setDarkMode] = useState(isDarkMode);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const ref = useRef();
 
@@ -35,8 +36,8 @@ export default function Header({openSidebar}){
                 <input ref={ref} type="search"
                     onKeyUp={(e) => {
                         if(e.keyCode == 13){
+                            navigate('/');
                             dispatch(setSearchVal(e.target.value));
-                            // navigate('/');
                         }
                     }} 
                     defaultValue={search}

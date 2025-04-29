@@ -419,7 +419,7 @@ aside {
     overflow: auto;
     & li > a{
       cursor: pointer;
-      padding: 8px 10px;
+      padding: 5px;
       text-transform: capitalize;
       font-size: 1.1rem;
       transition: 0.2s linear all;

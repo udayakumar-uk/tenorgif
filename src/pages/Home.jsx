@@ -19,8 +19,8 @@ export default function Home(){
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        const getFavItems = localStorage.getItem('favorites');
-        // dispatch(setFavorite(getFavItems));
+        const getFavItems = JSON.parse(localStorage.getItem('favorites'));;
+        dispatch(setFavorite(getFavItems));
     }, [])
 
     function openSidebar(e){

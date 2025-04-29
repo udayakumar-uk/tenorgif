@@ -26,6 +26,12 @@ export default function GifCard({feature}){
         const feaDataFilter = setFeaFav.filter(gif => gif.favorite);
         const stickDataFilter = setStickFav.filter(gif => gif.favorite);
 
+        if(feaDataFilter.length === 0 && stickDataFilter.length === 0){
+            const favoDataFilter = favoData.filter(gif => gif.id !== id);
+            dispatch(setFavorite(favoDataFilter));
+            return
+        }
+
         dispatch(setFeaFavoData(setFeaFav));
         dispatch(setStickFavoData(setStickFav));
         dispatch(setFavorite([...feaDataFilter, ...stickDataFilter]));

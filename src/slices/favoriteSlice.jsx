@@ -9,8 +9,6 @@ export const favoriteSlice = createSlice({
         setFavorite(state, action){
             state.gifData = action.payload;
             localStorage.setItem('favorites', JSON.stringify(action.payload))
-            console.log(localStorage.getItem('favorites'));
-            
         }
     }
 });
