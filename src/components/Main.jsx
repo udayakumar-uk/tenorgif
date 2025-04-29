@@ -1,6 +1,5 @@
 
 import Sticker from '../components/Sticker';
-// import Featured from '../components/Featured';
 import GifPageComponent from './GifPageComponent';
 
 
@@ -9,7 +8,6 @@ export default function Main() {
         <>
             <Sticker />
             <GifPageComponent gifProp="featured" />
-            {/* <Featured /> */}
         </>
     );
 }

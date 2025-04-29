@@ -20,16 +20,16 @@ export default function GifCard({feature}){
 
     function SetFavorite(e, id) {
         e.stopPropagation();
-        const feaDataFilter = feaData.filter(gif => gif.id === id);
-        const stickDataFilter = stickData.filter(gif => gif.id === id);
-        if(feaDataFilter.length > 0){
-            const setFav = feaData.map(fea=> id === fea.id ? {...fea, favorite: !fea.favorite} : fea);
-            dispatch(setFeaFavoData(setFav));
-        }
-        if(stickDataFilter.length > 0){
-            const setFav = stickData.map(stick=> id === stick.id ? {...stick, favorite: !stick.favorite} : stick);
-            dispatch(setFeaFavoData(setFav));
-        }
+        const setFeaFav = feaData.map(fea=> id === fea.id ? {...fea, favorite: !fea.favorite} : fea);
+        const setStickFav = stickData.map(stick=> id === stick.id ? {...stick, favorite: !stick.favorite} : stick);
+        
+        const feaDataFilter = setFeaFav.filter(gif => gif.favorite);
+        const stickDataFilter = setStickFav.filter(gif => gif.favorite);
+
+        dispatch(setFeaFavoData(setFeaFav));
+        dispatch(setStickFavoData(setStickFav));
+        dispatch(setFavorite([...feaDataFilter, ...stickDataFilter]));
+
     }
 
     return(       

@@ -8,7 +8,8 @@ export const favoriteSlice = createSlice({
     reducers: {
         setFavorite(state, action){
             state.gifData = action.payload;
-            console.log(action.payload);
+            localStorage.setItem('favorites', JSON.stringify(action.payload))
+            console.log(localStorage.getItem('favorites'));
             
         }
     }

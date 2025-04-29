@@ -25,6 +25,12 @@ export const router = createBrowserRouter([
         element: <GifPageComponent gifProp="sticker" />,
         errorElement: <ErrorElement />,
         
+      },
+      {
+        path: 'favorites',
+        element: <GifPageComponent gifProp="favorite" />,
+        errorElement: <ErrorElement />,
+        
       }
     ]
   }

@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../components/Header';
 import Aside from '../components/Aside';
 import Modal from '../components/Modal';
 import { Outlet } from 'react-router-dom';
+
+import { setFavorite } from '../slices/favoriteSlice';
 
 
 
@@ -14,6 +16,12 @@ export default function Home(){
 
     const {search} = useSelector(state => state.filter)
 
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        const getFavItems = localStorage.getItem('favorites');
+        // dispatch(setFavorite(getFavItems));
+    }, [])
 
     function openSidebar(e){
         if(e && e.target.className.includes('open-sidebar')){
@@ -34,14 +42,6 @@ export default function Home(){
                 <main>
                     <Modal />
                     <Outlet />
-                    {/* <Main loadMore={loadMore} filter={filter} sticker={stickers} featured={featured} itemClicks={itemClicks} favTrigger={FavoriteClick} seeAllClick={seeAllClick} /> */}
-                    {/* <Modal modalItem={modal.item} open={modal.showModal} type={modal.type} modal={{ ...modal }} modalTrigger={{closeModal, closeBackdropModal, gifType, convertToFileSize}} />
-
-                    <Routes>
-                    <Route path='/' element={<Main loadMore={loadMore} filter={filter} sticker={stickers} featured={featured} itemClicks={itemClicks} favTrigger={FavoriteClick} seeAllClick={seeAllClick} />}/>
-                    <Route path='favorites' element={<Featured filter={filter} title="Favorite" featured={favorites} FeaturedItemClick={itemClicks} favTrigger={FavoriteClick} />}/>
-                    <Route path='stickers' element={<Featured loadMore={loadMore} filter={filter} title="Stickers" featured={stickers} FeaturedItemClick={itemClicks} favTrigger={FavoriteClick} />}/>
-                    </Routes> */}
                 </main>
             </section>
         </div>

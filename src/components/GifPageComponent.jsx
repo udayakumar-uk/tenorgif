@@ -22,6 +22,9 @@ export default function GifPageComponent({gifProp}){
         switch(gifProp){
             case 'featured': dispatch(AsyncThunkFeature(search, limit, key));
             case 'sticker': dispatch(AsyncThunkSticker(search, limit, key));
+            case 'favorite': {
+                console.log(gifProp);
+            };
         }
     }, [dispatch, search, limit]);
 
@@ -59,7 +62,7 @@ export default function GifPageComponent({gifProp}){
 
                 <div className="pagination">
                     <p>Showing 1 to {gifData.length} of 50 results</p>
-                    {limit !== 50 && pagination && <button className="loadmore btn btn-primary btn-lg" onClick={() => loadMore(10) }>Load More</button>}
+                    {gifProp !== 'favorite' && limit !== 50 && pagination && <button className="loadmore btn btn-primary btn-lg" onClick={() => loadMore(10) }>Load More</button>}
                 </div>
             }
 

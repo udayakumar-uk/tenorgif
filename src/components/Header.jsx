@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef} from "react";
 import Logo from "../img/tenor_logo.svg.png";
 import {Link} from 'react-router-dom';
 import { setSearchVal, reset } from "../slices/filterSlice";
+import { setFavorite } from "../slices/favoriteSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Header({openSidebar}){
@@ -14,6 +15,7 @@ export default function Header({openSidebar}){
     const ref = useRef();
 
     const {search} = useSelector(state => state.filter);
+    const {gifData} = useSelector(state => state.favorite);
 
     useEffect(()=>{
         localStorage.setItem('darkMode', darkMode);
@@ -41,7 +43,7 @@ export default function Header({openSidebar}){
                     name="search" id="search" className="form-input" />
             </div>
 
-            <Link to="favorites" title="Favorite" className="favorite"><span className="material-symbols-rounded">Favorite</span> {<span className="isFav"></span>} </Link>
+            <Link to="favorites" title="Favorite" className="favorite"><span className="material-symbols-rounded">Favorite</span> {(gifData.length != 0) && <span className="isFav"></span>} </Link>
 
             <div className="theme--switch">
                 <input type="checkbox" name="color-scheme" id="theme" value="light" defaultChecked={darkMode} onChange={()=>{setDarkMode(!darkMode)}} hidden />
