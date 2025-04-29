@@ -14,13 +14,14 @@ export default function Home(){
 
     const [sidebar, setSidebar] = useState(false);
 
-    const {search} = useSelector(state => state.filter)
-
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        const getFavItems = JSON.parse(localStorage.getItem('favorites'));;
-        dispatch(setFavorite(getFavItems));
+        const getFavItems = JSON.parse(localStorage.getItem('favorites'));
+        if(getFavItems){
+
+            dispatch(setFavorite(getFavItems));
+        }
     }, [])
 
     function openSidebar(e){

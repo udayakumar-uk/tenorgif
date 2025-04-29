@@ -20,7 +20,8 @@ export default function Header({openSidebar}){
 
     useEffect(()=>{
         localStorage.setItem('darkMode', darkMode);
-    }, [darkMode]);
+        ref.current.value = search;
+    }, [darkMode, search]);
 
     return(
         <header>

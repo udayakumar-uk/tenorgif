@@ -27,7 +27,6 @@ export const featuerdSlice = createSlice({
         },
         setFeaFavoData(state, action){
             state.gifData = action.payload;
-            console.log(action.payload);
         },
         errFeatuerData(state, action){
             state.loading = false;

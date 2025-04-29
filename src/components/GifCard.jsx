@@ -20,22 +20,31 @@ export default function GifCard({feature}){
 
     function SetFavorite(e, id) {
         e.stopPropagation();
-        const setFeaFav = feaData.map(fea=> id === fea.id ? {...fea, favorite: !fea.favorite} : fea);
-        const setStickFav = stickData.map(stick=> id === stick.id ? {...stick, favorite: !stick.favorite} : stick);
         
-        const feaDataFilter = setFeaFav.filter(gif => gif.favorite);
-        const stickDataFilter = setStickFav.filter(gif => gif.favorite);
+        const getFavData = JSON.parse(localStorage.getItem('favorites')) || [];
 
-        if(feaDataFilter.length === 0 && stickDataFilter.length === 0){
-            const favoDataFilter = favoData.filter(gif => gif.id !== id);
-            dispatch(setFavorite(favoDataFilter));
-            return
+        const setFeaFav = feaData.map(fea => fea.id === id ? { ...fea, favorite: !fea.favorite } : fea );
+        const setStickFav = stickData.map(stick =>  stick.id === id ? { ...stick, favorite: !stick.favorite } : stick );
+        const isAlreadyFavorite = getFavData.some(gif => gif.id === id);
+
+        let updatedFavorites;
+        if (isAlreadyFavorite) {
+            updatedFavorites = getFavData.filter(gif => gif.id !== id);
+        } else {
+            const newFavorite = [...setFeaFav, ...setStickFav].find(gif => gif.id === id);
+            updatedFavorites = [...getFavData, newFavorite];
         }
 
-        dispatch(setFeaFavoData(setFeaFav));
-        dispatch(setStickFavoData(setStickFav));
-        dispatch(setFavorite([...feaDataFilter, ...stickDataFilter]));
+        localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 
+        const favIds = new Set(updatedFavorites.map(gif => gif.id));
+
+        const syncedFeaData = setFeaFav.map(gif => ({ ...gif, favorite: favIds.has(gif.id) }));
+        const syncedStickData = setStickFav.map(gif => ({ ...gif, favorite: favIds.has(gif.id) }));
+
+        dispatch(setFeaFavoData(syncedFeaData));
+        dispatch(setStickFavoData(syncedStickData));
+        dispatch(setFavorite(updatedFavorites));
     }
 
     return(       

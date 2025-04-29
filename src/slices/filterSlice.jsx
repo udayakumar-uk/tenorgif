@@ -21,12 +21,9 @@ export const filterSlice = createSlice({
         },
         setSidebarEvent(state, action){
             state.search = action.payload;
-            // state.pagination = false;
             state.limit = 30;
-            console.log('setSidebarEvent');
         },
         reset(state){
-            // state.pagination = false;
             state.search = '';
             state.limit = 30;
             console.log('reset');

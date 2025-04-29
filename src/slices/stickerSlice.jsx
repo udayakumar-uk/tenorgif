@@ -26,7 +26,6 @@ export const stickerSlice = createSlice({
         },
         setStickFavoData(state, action){
             state.gifData = action.payload;
-            console.log(action.payload);
             
         },
         errStickerData(state, action){

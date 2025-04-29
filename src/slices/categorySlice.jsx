@@ -14,7 +14,7 @@ export const categorySlice = createSlice({
         },
         setCategoryData(state, action){
             state.loading = false;
-            state.categories = action.payload
+            state.categories = action.payload          
         },
         errCategoryData(state, action){
             state.loading = false;
