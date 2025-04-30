@@ -14,7 +14,7 @@ export const stickerSlice = createSlice({
         },
         setStickerData(state, action){
             state.loading = false;
-            const getFavData = JSON.parse(localStorage.getItem('favorites'));
+            const getFavData = JSON.parse(localStorage.getItem('favorites')) || [];
             if(getFavData.length){
                 action.payload.forEach(gif => {
                     if(getFavData.some(fav => fav.id === gif.id)) {
